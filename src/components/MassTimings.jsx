@@ -18,7 +18,11 @@ const massData = [
 
 function MassCard(props) {
     return (
-        <div className="border border-yellow-600 border-opacity-40 p-8 text-center hover:border-yellow-400 hover:bg-yellow-400 hover:bg-opacity-10 transition duration-300">
+        <div
+            data-aos="fade-up"
+            data-aos-delay={props.delay}
+            className="border border-yellow-600 border-opacity-40 p-8 text-center hover:border-yellow-400 hover:bg-yellow-400 hover:bg-opacity-10 transition duration-300"
+        >
             <h3 className="text-yellow-400 text-sm font-bold tracking-widest uppercase mb-4">
                 {props.day}
             </h3>
@@ -36,8 +40,7 @@ function MassTimings() {
     return (
         <section className="bg-gray-900 py-20 px-8">
 
-            {/* Section Header */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-12" data-aos="fade-up">
                 <p className="text-yellow-400 text-xs tracking-widest uppercase mb-2">
                     ✝ Holy Mass
                 </p>
@@ -54,7 +57,6 @@ function MassTimings() {
                 </div>
             </div>
 
-            {/* Cards */}
             <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-1">
                 {massData.map((item, index) => (
                     <MassCard
@@ -62,6 +64,7 @@ function MassTimings() {
                         day={item.day}
                         times={item.times}
                         language={item.language}
+                        delay={index * 150}
                     />
                 ))}
             </div>

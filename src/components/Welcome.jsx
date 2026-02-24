@@ -4,7 +4,7 @@ function Welcome() {
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
                 {/* Left - Text */}
-                <div>
+                <div data-aos="fade-right">
                     <p className="text-yellow-600 text-xs tracking-widest uppercase mb-2">
                         ✝ About Our Parish
                     </p>
@@ -32,20 +32,16 @@ function Welcome() {
                     </button>
                 </div>
 
-                {/* Right - Image */}
-                <div className="relative">
-                    <img
-                        src="https://images.unsplash.com/photo-1601136250153-e8e76cc09b2a?w=600&q=80"
-                        alt="Loyola Church"
-                        className="w-full shadow-xl"
-                    />
-                    {/* Gold accent box */}
-                    <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-yellow-400 -z-10" />
-                    {/* Badge */}
-                    <div className="absolute -top-4 -left-4 bg-yellow-500 text-gray-900 w-24 h-24 rounded-full flex flex-col items-center justify-center text-center font-bold text-xs p-2">
-                        <span className="text-lg">✝</span>
-                        Hanumantharayan kottai Dindigul
+                {/* Right - Image placeholder */}
+                <div data-aos="fade-left" className="relative">
+                    <div className="w-full h-80 bg-yellow-100 border-4 border-yellow-300 flex items-center justify-center">
+                        <div className="text-center text-yellow-600">
+                            <div className="text-6xl mb-4">⛪</div>
+                            <p className="font-bold tracking-wide">Church Image</p>
+                            <p className="text-sm text-yellow-500">Coming Soon</p>
+                        </div>
                     </div>
+                    <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-yellow-400 -z-10" />
                 </div>
 
             </div>

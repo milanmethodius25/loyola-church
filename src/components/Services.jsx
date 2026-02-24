@@ -2,44 +2,42 @@ const services = [
     {
         icon: '🙏',
         title: 'Sunday Catechism',
-        description:
-            '7:30 AM in Tamil followed by Children\'s Mass. 8:45 AM in English followed by common Mass at 9:30 AM.',
+        description: "7:30 AM in Tamil followed by Children's Mass. 8:45 AM in English followed by common Mass at 9:30 AM.",
     },
     {
         icon: '🕊️',
         title: 'Confession',
-        description:
-            'Saturday 5:00 PM – 6:00 PM. Come and experience the Sacrament of Reconciliation.',
+        description: 'Saturday 5:00 PM – 6:00 PM. Come and experience the Sacrament of Reconciliation.',
     },
     {
         icon: '🤝',
         title: 'Communion to the Sick',
-        description:
-            'Sunday 11:00 AM – 12:00 PM. Our ministers visit the homebound and sick.',
+        description: 'Sunday 11:00 AM – 12:00 PM. Our ministers visit the homebound and sick.',
     },
     {
         icon: '💒',
         title: 'Marriage Banns',
-        description:
-            'Wednesday 10:00 AM. Register at the Immaculate Matrimonial Centre.',
+        description: 'Wednesday 10:00 AM. Register at the Immaculate Matrimonial Centre.',
     },
     {
         icon: '🍱',
         title: 'Annadhanam',
-        description:
-            'Everyday after 12:00 PM Mass. Your donation can provide meals to someone in need.',
+        description: 'Everyday after 12:00 PM Mass. Your donation can provide meals to someone in need.',
     },
     {
         icon: '🌟',
         title: 'Prayer Meetings',
-        description:
-            'Sunday 3:00 PM by Gospel Workers. Monday 7:00 PM by Good Samaritan Prayer Group.',
+        description: 'Sunday 3:00 PM by Gospel Workers. Monday 7:00 PM by Good Samaritan Prayer Group.',
     },
 ];
 
 function ServiceCard(props) {
     return (
-        <div className="border border-yellow-200 border-t-4 border-t-yellow-500 p-8 hover:shadow-xl transition duration-300 bg-white">
+        <div
+            data-aos="fade-up"
+            data-aos-delay={props.delay}
+            className="border border-yellow-200 border-t-4 border-t-yellow-500 p-8 hover:shadow-xl transition duration-300 bg-white"
+        >
             <div className="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center text-2xl mb-4">
                 {props.icon}
             </div>
@@ -57,8 +55,7 @@ function Services() {
     return (
         <section className="bg-white py-20 px-8">
 
-            {/* Header */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-12" data-aos="fade-up">
                 <p className="text-yellow-600 text-xs tracking-widest uppercase mb-2">
                     ✝ Parish Life
                 </p>
@@ -72,7 +69,6 @@ function Services() {
                 </div>
             </div>
 
-            {/* Grid */}
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {services.map((service, index) => (
                     <ServiceCard
@@ -80,6 +76,7 @@ function Services() {
                         icon={service.icon}
                         title={service.title}
                         description={service.description}
+                        delay={index * 100}
                     />
                 ))}
             </div>
