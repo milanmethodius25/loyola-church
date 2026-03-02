@@ -14,9 +14,8 @@ function About() {
                     <div className="w-16 h-px bg-yellow-500" />
                 </div>
                 <p className="text-gray-700 text-lg leading-relaxed font-serif italic mb-6">
-                    Loyola Church is a Catholic church dedicated to the belief in the
-                    Immaculate Conception of the Blessed Virgin Mary located in
-                    Chromepet, Chennai.
+                    Loyola Church is a Catholic church dedicated to St.Ignatius of Loyola located in
+                    Hanumantharayan Kottai, Dindigul.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-4">
                     Our church is committed to bringing relevant teaching to today's
@@ -24,7 +23,7 @@ function About() {
                     We welcome all who seek to grow in faith and community.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                    The parish serves thousands of faithful Catholics in the Chromepet
+                    The parish serves thousands of faithful Catholics in the Hanumantharayan kottai
                     area and surrounding neighborhoods, offering daily Mass, sacraments,
                     and a wide range of ministries and activities for all ages.
                 </p>

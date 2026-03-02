@@ -17,13 +17,12 @@ function Footer() {
                             <h3 className="text-yellow-400 font-bold text-sm tracking-wide uppercase">
                                 Immaculate Conception
                             </h3>
-                            <p className="text-gray-500 text-xs">Chromepet, Chennai</p>
+                            <p className="text-gray-500 text-xs">Hanumantharayan Kottai, Dindigul.</p>
                         </div>
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                        A Catholic church dedicated to the belief in the Immaculate
-                        Conception of the Blessed Virgin Mary, serving the community
-                        of Chromepet, Chennai.
+                        A Catholic church dedicated to the St.Ignatius of Loyola, serving the community
+                        of Hanumantharayan Kottai, Dindigul.
                     </p>
                 </div>
 
@@ -52,7 +51,7 @@ function Footer() {
                     <div className="space-y-4 text-gray-400 text-sm">
                         <div className="flex items-start gap-3">
                             <span className="text-yellow-500 mt-1">📍</span>
-                            <p>353, GST Road, Chromepet,<br />Chennai 600044.</p>
+                            <p>Hanumantharayan Kottai, Dindigul.,<br />Dindigul 624002.</p>
                         </div>
                         <div className="flex items-center gap-3">
                             <span className="text-yellow-500">📞</span>
@@ -60,7 +59,7 @@ function Footer() {
                         </div>
                         <div className="flex items-center gap-3">
                             <span className="text-yellow-500">✉️</span>
-                            <p>immaculateic4@gmail.com</p>
+                            <p>milanmethodius@gmail.com</p>
                         </div>
 
                         {/* External Links - FIXED SYNTAX HERE */}
@@ -90,7 +89,7 @@ function Footer() {
             {/* Bottom Bar */}
             <div className="border-t border-gray-800 py-5 text-center">
                 <p className="text-gray-500 text-xs">
-                    Copyright © {new Date().getFullYear()} Immaculate Conception Church, Chromepet. All Rights Reserved.
+                    Copyright © {new Date().getFullYear()} St.ignatius of Loyola Chruch, Hanumantharayan Kottai, Dindigul. All Rights Reserved.
                 </p>
             </div>
         </footer>
