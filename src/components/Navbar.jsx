@@ -18,7 +18,7 @@ function Navbar() {
 
             {/* Top Bar */}
             <div className="bg-yellow-500 text-gray-900 text-center py-1 text-xs font-semibold tracking-widest">
-                ✝ Welcome to Loyola Church, Chromepet, Chennai ✝
+                ✝ Welcome to St.Ignatius of Loyola Church,Hanumantharayan Kottai, Dindigul ✝
             </div>
 
             {/* Main Navbar */}
@@ -33,7 +33,7 @@ function Navbar() {
                         <h1 className="text-yellow-400 font-bold text-sm tracking-wide leading-tight">
                             Loyola Church
                         </h1>
-                        <p className="text-gray-400 text-xs">Chromepet, Chennai</p>
+                        <p className="text-gray-400 text-xs">Hanumantharayan Kottai, Dindigul.</p>
                     </div>
                 </Link>
 
