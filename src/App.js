@@ -10,6 +10,7 @@ import About from './pages/About';
 import MassTimingsPage from './pages/MassTimingsPage';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
+import ParishInfo from './pages/ParishInfo';
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/mass-timings" element={<MassTimingsPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/parish-info" element={<ParishInfo />} />
       </Routes>
       <Footer />
     </BrowserRouter>
