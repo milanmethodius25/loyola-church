@@ -5,6 +5,7 @@ const navLinks = [
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
     { label: 'Mass Timings', path: '/mass-timings' },
+    { label: 'Parish Info', path: '/parish-info' },
     { label: 'Gallery', path: '/gallery' },
     { label: 'Contact', path: '/contact' },
 ];
