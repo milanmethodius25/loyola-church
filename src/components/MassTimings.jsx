@@ -1,18 +1,23 @@
 const massData = [
     {
-        day: 'Monday – Friday',
-        times: ['6:00 AM', '8:00 AM', '12:00 PM'],
-        language: 'Tamil & English',
-    },
-    {
-        day: 'Saturday',
-        times: ['6:00 AM', '8:00 AM', '5:30 PM'],
-        language: 'Tamil & English',
-    },
-    {
         day: 'Sunday',
-        times: ['6:00 AM', '7:30 AM', '9:30 AM', '11:30 AM'],
-        language: 'Tamil & English',
+        timings: ['4:30 AM', '8:15 AM'],
+        note: 'Rosary at 4:15 AM & 8:00 AM',
+    },
+    {
+        day: 'Weekdays',
+        timings: ['7:00 PM'],
+        note: 'Rosary at 6:45 PM',
+    },
+    {
+        day: 'First Friday',
+        timings: ['7:00 PM'],
+        note: 'Adoration followed by Mass',
+    },
+    {
+        day: 'Substation Week',
+        timings: ['5:30 AM'],
+        note: 'Rosary at 5:15 AM — First week of month',
     },
 ];
 
@@ -26,12 +31,12 @@ function MassCard(props) {
             <h3 className="text-yellow-400 text-sm font-bold tracking-widest uppercase mb-4">
                 {props.day}
             </h3>
-            {props.times.map((time, index) => (
+            {props.timings.map((time, index) => (
                 <p key={index} className="text-white text-2xl font-bold mb-1">
                     {time}
                 </p>
             ))}
-            <p className="text-gray-400 italic mt-3 text-sm">{props.language}</p>
+            <p className="text-gray-400 italic mt-3 text-sm">{props.note}</p>
         </div>
     );
 }
@@ -48,7 +53,7 @@ function MassTimings() {
                     Mass Timings
                 </h2>
                 <p className="text-gray-400 italic mt-2">
-                    Join us for daily Eucharistic celebration
+                    Join us for the Holy Eucharist
                 </p>
                 <div className="flex items-center justify-center gap-4 mt-4">
                     <div className="w-16 h-px bg-yellow-500" />
@@ -57,20 +62,40 @@ function MassTimings() {
                 </div>
             </div>
 
-            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-1">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
                 {massData.map((item, index) => (
                     <MassCard
                         key={index}
                         day={item.day}
-                        times={item.times}
-                        language={item.language}
+                        timings={item.timings}
+                        note={item.note}
                         delay={index * 150}
                     />
                 ))}
             </div>
 
-            <p className="text-center text-gray-500 italic text-sm mt-8">
-                * Special timings on Holy Days of Obligation. Please check with the parish office.
+            {/* Substation Note */}
+            <div className="max-w-5xl mx-auto mt-8 border border-yellow-600 border-opacity-30 p-6">
+                <p className="text-yellow-400 font-bold text-center mb-4 text-sm tracking-widest uppercase">
+                    📍 Substation Mass — First Week of Every Month
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    {[
+                        { place: 'Brother Medu', day: 'First Monday' },
+                        { place: 'Anthoniyarpuram', day: 'First Tuesday' },
+                        { place: 'Susaipatty', day: 'First Wednesday' },
+                        { place: 'Thamarai Kulam', day: 'First Thursday' },
+                    ].map((sub, i) => (
+                        <div key={i} className="text-center">
+                            <p className="text-white font-bold text-sm">{sub.place}</p>
+                            <p className="text-gray-400 text-xs mt-1">{sub.day} · 7:00 PM</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <p className="text-center text-gray-500 italic text-sm mt-6">
+                * Timings may change on feast days. Please check with the parish office.
             </p>
 
         </section>

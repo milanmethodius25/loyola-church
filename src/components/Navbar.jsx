@@ -5,10 +5,15 @@ const navLinks = [
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
     { label: 'Mass Timings', path: '/mass-timings' },
+    { label: 'Announcements', path: '/announcements' },
+    { label: 'Prayer Request', path: '/prayer-request' },
+    { label: 'Videos', path: '/videos' },
     { label: 'Parish Info', path: '/parish-info' },
+    { label: 'Feast Days', path: '/feast-days' },
     { label: 'Gallery', path: '/gallery' },
     { label: 'Contact', path: '/contact' },
 ];
+
 
 function Navbar() {
     const location = useLocation();
