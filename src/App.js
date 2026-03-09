@@ -11,6 +11,12 @@ import MassTimingsPage from './pages/MassTimingsPage';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import ParishInfo from './pages/ParishInfo';
+import FeastDays from './pages/FeastDays';
+import Notifications from './pages/Notifications';
+import PrayerRequest from './pages/PrayerRequest';
+import AdminPrayerRequests from './pages/AdminPrayerRequests';
+import Videos from './pages/Videos';
+import AdminVideos from './pages/AdminVideos';
 
 function App() {
   useEffect(() => {
@@ -31,6 +37,13 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/parish-info" element={<ParishInfo />} />
+        <Route path="/feast-days" element={<FeastDays />} />
+        <Route path="/announcements" element={<Notifications />} />
+        <Route path="/prayer-request" element={<PrayerRequest />} />
+        <Route path="/admin/prayer-requests" element={<AdminPrayerRequests />} />
+        <Route path="/videos" element={<Videos />} />
+        <Route path="/admin/videos" element={<AdminVideos />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>
