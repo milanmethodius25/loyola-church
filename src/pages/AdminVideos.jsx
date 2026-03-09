@@ -26,7 +26,6 @@ function AdminVideos() {
     const [formData, setFormData] = useState({ title: '', url: '' });
     const [submitStatus, setSubmitStatus] = useState('idle');
     const [errorMsg, setErrorMsg] = useState('');
-    const [deleteId, setDeleteId] = useState(null);
 
     const handleLogin = (e) => {
         e.preventDefault();

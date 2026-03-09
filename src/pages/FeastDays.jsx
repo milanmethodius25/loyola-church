@@ -20,20 +20,6 @@ const feastDays = [
     { month: 'December', day: '25', name: 'Christmas Day', description: 'Birth of our Lord Jesus Christ' },
 ];
 
-const monthColors = {
-    January: 'bg-blue-50 border-blue-300',
-    February: 'bg-pink-50 border-pink-300',
-    March: 'bg-green-50 border-green-300',
-    April: 'bg-yellow-50 border-yellow-300',
-    May: 'bg-emerald-50 border-emerald-300',
-    June: 'bg-orange-50 border-orange-300',
-    July: 'bg-red-50 border-red-300',
-    August: 'bg-purple-50 border-purple-300',
-    September: 'bg-indigo-50 border-indigo-300',
-    October: 'bg-amber-50 border-amber-300',
-    November: 'bg-gray-50 border-gray-300',
-    December: 'bg-rose-50 border-rose-300',
-};
 
 function FeastDays() {
     const currentMonth = new Date().toLocaleString('default', { month: 'long' });
