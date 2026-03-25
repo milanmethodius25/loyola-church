@@ -2,7 +2,7 @@ const services = [
     {
         icon: '🙏',
         title: 'Sunday Catechism',
-        description: "7:30 AM in Tamil followed by Children's Mass. 8:45 AM in English followed by common Mass at 9:30 AM.",
+        description: "8:15 AM in Tamil followed by Children's Mass.",
     },
     {
         icon: '🕊️',
@@ -12,22 +12,7 @@ const services = [
     {
         icon: '🤝',
         title: 'Communion to the Sick',
-        description: 'Sunday 11:00 AM – 12:00 PM. Our ministers visit the homebound and sick.',
-    },
-    {
-        icon: '💒',
-        title: 'Marriage Banns',
-        description: 'Wednesday 10:00 AM. Register at the Immaculate Matrimonial Centre.',
-    },
-    {
-        icon: '🍱',
-        title: 'Annadhanam',
-        description: 'Everyday after 12:00 PM Mass. Your donation can provide meals to someone in need.',
-    },
-    {
-        icon: '🌟',
-        title: 'Prayer Meetings',
-        description: 'Sunday 3:00 PM by Gospel Workers. Monday 7:00 PM by Good Samaritan Prayer Group.',
+        description: 'Sunday 06:00 AM – 08:15 AM. Our ministers visit the homebound and sick.',
     },
 ];
 
