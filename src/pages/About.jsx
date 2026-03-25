@@ -14,7 +14,7 @@ function About() {
                     <div className="w-16 h-px bg-yellow-500" />
                 </div>
                 <p className="text-gray-700 text-lg leading-relaxed font-serif italic mb-6">
-                    Loyola Church is a Catholic church dedicated to St.Ignatius of Loyola located in
+                    St. Ignatius of Loyola Church is a Catholic church dedicated to St.Ignatius located in
                     Hanumantharayan Kottai, Dindigul.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-4">

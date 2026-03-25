@@ -1,30 +1,19 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const API_URL = 'https://mass-backend.onrender.com/api/v1/prayerRequest/all';
-const ADMIN_PASSWORD = 'loyola2024';
 
 function AdminPrayerRequests() {
+    const { token } = useAuth();
     const [requests, setRequests] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [password, setPassword] = useState('');
-    const [wrongPassword, setWrongPassword] = useState(false);
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        if (password === ADMIN_PASSWORD) {
-            setIsAuthenticated(true);
-            setWrongPassword(false);
-        } else {
-            setWrongPassword(true);
-        }
-    };
 
     useEffect(() => {
-        if (!isAuthenticated) return;
-        setLoading(true);
-        fetch(API_URL)
+        fetch(API_URL, {
+            headers: { 'x-auth-token': token },
+        })
             .then((res) => res.json())
             .then((data) => {
                 setRequests(data.data);
@@ -34,59 +23,14 @@ function AdminPrayerRequests() {
                 setError('Failed to load prayer requests.');
                 setLoading(false);
             });
-    }, [isAuthenticated]);
-
-    // Password Screen
-    if (!isAuthenticated) {
-        return (
-            <div className="min-h-screen bg-gray-900 pt-28 pb-20 px-8 flex items-center justify-center">
-                <div className="bg-white border-t-4 border-yellow-500 p-10 w-full max-w-sm">
-                    <div className="text-center mb-8">
-                        <div className="text-4xl mb-3">🔐</div>
-                        <h2 className="font-bold text-amber-900 text-2xl">Admin Access</h2>
-                        <p className="text-gray-500 text-sm mt-2">
-                            Enter password to view prayer requests
-                        </p>
-                    </div>
-
-                    {wrongPassword && (
-                        <div className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 mb-4 rounded">
-                            ❌ Wrong password. Please try again.
-                        </div>
-                    )}
-
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        <div>
-                            <label className="block text-xs font-bold tracking-widest uppercase text-amber-900 mb-2">
-                                Password
-                            </label>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                placeholder="Enter admin password"
-                                className="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-yellow-400 transition"
-                            />
-                        </div>
-                        <button
-                            type="submit"
-                            className="w-full bg-yellow-500 text-gray-900 font-bold py-3 text-sm tracking-widest uppercase hover:bg-yellow-400 transition"
-                        >
-                            Login
-                        </button>
-                    </form>
-                </div>
-            </div>
-        );
-    }
+    }, [token]);
 
     return (
-        <div className="min-h-screen bg-amber-50 pt-28 pb-20 px-8">
+        <div className="min-h-screen bg-amber-50 px-8 py-12">
             <div className="max-w-4xl mx-auto">
 
                 {/* Header */}
-                <div className="flex items-center justify-between mb-10">
+                <div className="flex items-center justify-between mb-8">
                     <div>
                         <p className="text-yellow-600 text-xs tracking-widest uppercase mb-1">
                             ✝ Admin Panel
@@ -95,16 +39,16 @@ function AdminPrayerRequests() {
                             Prayer Requests
                         </h1>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-4">
                         <span className="bg-gray-900 text-yellow-400 text-xs font-bold px-4 py-2 rounded">
                             Total: {requests.length}
                         </span>
-                        <button
-                            onClick={() => setIsAuthenticated(false)}
-                            className="bg-red-500 text-white text-xs font-bold px-4 py-2 hover:bg-red-400 transition"
+                        <Link
+                            to="/admin/dashboard"
+                            className="text-yellow-600 text-sm hover:text-yellow-500 transition font-bold"
                         >
-                            Logout
-                        </button>
+                            ← Dashboard
+                        </Link>
                     </div>
                 </div>
 

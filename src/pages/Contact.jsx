@@ -80,8 +80,8 @@ function Contact() {
                             <div className="text-2xl mb-3">📍</div>
                             <h3 className="font-bold text-amber-900 mb-2">Address</h3>
                             <p className="text-gray-600">
-                                353, GST Road, Chromepet,<br />
-                                Chennai 600044.
+                                Hanumantharayan Kottai<br />
+                                Dindigul 624002.
                             </p>
                         </div>
 

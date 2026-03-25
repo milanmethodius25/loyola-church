@@ -1,44 +1,30 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
-const API_URL = 'https://mass-backend.onrender.com/api/v1/youtubeLink';
+const API_URL = 'https://mass-backend.onrender.com/api/v1/notification';
 
-function getYouTubeId(url) {
-    try {
-        if (url.includes('youtu.be/')) {
-            return url.split('youtu.be/')[1].split('?')[0];
-        }
-        if (url.includes('youtube.com/watch')) {
-            return new URL(url).searchParams.get('v');
-        }
-        return null;
-    } catch {
-        return null;
-    }
-}
-
-function AdminVideos() {
+function AdminAnnouncements() {
     const { token } = useAuth();
-    const [videos, setVideos] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [formData, setFormData] = useState({ title: '', url: '' });
+    const [announcements, setAnnouncements] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [formData, setFormData] = useState({ title: '', message: '' });
     const [submitStatus, setSubmitStatus] = useState('idle');
     const [errorMsg, setErrorMsg] = useState('');
 
-    const fetchVideos = () => {
+    const fetchAnnouncements = () => {
         setLoading(true);
         fetch(`${API_URL}/all`)
             .then((res) => res.json())
             .then((data) => {
-                setVideos(data.data);
+                setAnnouncements(data?.data || []);
                 setLoading(false);
             })
             .catch(() => setLoading(false));
     };
 
     useEffect(() => {
-        fetchVideos();
+        fetchAnnouncements();
     }, []);
 
     const handleSubmit = async (e) => {
@@ -60,13 +46,10 @@ function AdminVideos() {
 
             if (response.ok) {
                 setSubmitStatus('success');
-                setFormData({ title: '', url: '' });
-                fetchVideos();
+                setFormData({ title: '', message: '' });
+                fetchAnnouncements();
             } else {
-                const messages = data.errors
-                    ? data.errors.map((e) => e.msg).join(', ')
-                    : data.error || 'Something went wrong.';
-                setErrorMsg(messages);
+                setErrorMsg(data?.error || 'Something went wrong.');
                 setSubmitStatus('error');
             }
         } catch {
@@ -76,13 +59,13 @@ function AdminVideos() {
     };
 
     const handleDelete = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this video?')) return;
+        if (!window.confirm('Delete this announcement?')) return;
         try {
             await fetch(`${API_URL}/delete/${id}`, {
                 method: 'DELETE',
                 headers: { 'x-auth-token': token },
             });
-            fetchVideos();
+            fetchAnnouncements();
         } catch {
             alert('Failed to delete.');
         }
@@ -99,7 +82,7 @@ function AdminVideos() {
                             ✝ Admin Panel
                         </p>
                         <h1 className="text-3xl font-bold text-amber-900">
-                            Manage Videos
+                            Manage Announcements
                         </h1>
                     </div>
                     <Link
@@ -110,17 +93,18 @@ function AdminVideos() {
                     </Link>
                 </div>
 
-                {/* Add Video Form */}
-                <div className="bg-white border border-yellow-200 border-t-4 border-t-yellow-500 p-8 mb-10">
+                {/* Add Form */}
+                <div className="bg-white border border-yellow-200 border-t-4 border-t-yellow-500 p-8 mb-8">
                     <h3 className="font-bold text-amber-900 text-xl mb-6">
-                        ➕ Add New Video
+                        ➕ Add Announcement
                     </h3>
 
                     {submitStatus === 'success' && (
                         <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 mb-4 text-sm rounded">
-                            ✅ Video added successfully!
+                            ✅ Announcement added!
                         </div>
                     )}
+
                     {submitStatus === 'error' && (
                         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 mb-4 text-sm rounded">
                             ❌ {errorMsg}
@@ -130,28 +114,28 @@ function AdminVideos() {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block text-xs font-bold tracking-widest uppercase text-amber-900 mb-2">
-                                Video Title *
+                                Title *
                             </label>
                             <input
                                 type="text"
                                 value={formData.title}
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                                 required
-                                placeholder="e.g. Christmas Mass 2024"
+                                placeholder="Announcement title"
                                 className="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-yellow-400"
                             />
                         </div>
                         <div>
                             <label className="block text-xs font-bold tracking-widest uppercase text-amber-900 mb-2">
-                                YouTube URL *
+                                Message *
                             </label>
-                            <input
-                                type="url"
-                                value={formData.url}
-                                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                            <textarea
+                                value={formData.message}
+                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 required
-                                placeholder="https://youtu.be/... or https://youtube.com/watch?v=..."
-                                className="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-yellow-400"
+                                rows="4"
+                                placeholder="Announcement message"
+                                className="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-yellow-400 resize-none"
                             />
                         </div>
                         <button
@@ -159,14 +143,14 @@ function AdminVideos() {
                             disabled={submitStatus === 'sending'}
                             className="bg-yellow-500 text-gray-900 font-bold px-8 py-3 text-sm tracking-widest uppercase hover:bg-yellow-400 transition disabled:opacity-50"
                         >
-                            {submitStatus === 'sending' ? 'Adding...' : 'Add Video'}
+                            {submitStatus === 'sending' ? 'Adding...' : 'Add Announcement'}
                         </button>
                     </form>
                 </div>
 
-                {/* Videos List */}
+                {/* List */}
                 <h3 className="font-bold text-amber-900 text-xl mb-4">
-                    📺 All Videos ({videos.length})
+                    📢 All Announcements ({announcements.length})
                 </h3>
 
                 {loading && (
@@ -176,37 +160,32 @@ function AdminVideos() {
                 )}
 
                 <div className="space-y-4">
-                    {videos.map((video) => {
-                        const videoId = getYouTubeId(video.url);
-                        const thumbnail = videoId
-                            ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
-                            : null;
-
-                        return (
-                            <div
-                                key={video._id}
-                                className="bg-white border-l-4 border-yellow-500 p-4 flex items-center gap-4 shadow-sm"
-                            >
-                                {thumbnail && (
-                                    <img
-                                        src={thumbnail}
-                                        alt={video.title}
-                                        className="w-24 h-16 object-cover flex-shrink-0 rounded"
-                                    />
-                                )}
-                                <div className="flex-1">
-                                    <h4 className="font-bold text-amber-900">{video.title}</h4>
-                                    <p className="text-gray-400 text-xs mt-1 truncate">{video.url}</p>
+                    {announcements.map((item) => (
+                        <div
+                            key={item._id}
+                            className="bg-white border-l-4 border-yellow-500 p-6 flex items-start justify-between gap-4 shadow-sm"
+                        >
+                            <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <h4 className="font-bold text-amber-900">{item?.title}</h4>
+                                    <span className={`text-xs font-bold px-2 py-0.5 rounded-full
+                    ${item?.is_active
+                                            ? 'bg-green-100 text-green-700'
+                                            : 'bg-gray-100 text-gray-500'
+                                        }`}>
+                                        {item?.is_active ? 'Active' : 'Ended'}
+                                    </span>
                                 </div>
-                                <button
-                                    onClick={() => handleDelete(video._id)}
-                                    className="bg-red-500 text-white text-xs font-bold px-4 py-2 hover:bg-red-400 transition flex-shrink-0"
-                                >
-                                    Delete
-                                </button>
+                                <p className="text-gray-600 text-sm">{item?.message}</p>
                             </div>
-                        );
-                    })}
+                            <button
+                                onClick={() => handleDelete(item._id)}
+                                className="bg-red-500 text-white text-xs font-bold px-4 py-2 hover:bg-red-400 transition flex-shrink-0"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    ))}
                 </div>
 
             </div>
@@ -214,4 +193,4 @@ function AdminVideos() {
     );
 }
 
-export default AdminVideos;
+export default AdminAnnouncements;

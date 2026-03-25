@@ -1,9 +1,9 @@
 const parishData = {
-    parish_name: 'Loyola Church',
-    address: '353, GST Road, Chromepet, Chennai 600044',
-    phone: '044-22410077',
-    email: 'loyolachurch@gmail.com',
-    established_year: '1997',
+    parish_name: 'St.Ignatius of Loyola Church',
+    address: 'Hanumantharayan Kottai, Dindigul 624002',
+    phone: '8072802711',
+    email: 'milanmethodius@gmail.com',
+    established_year: '31 July 1822',
 };
 
 function ParishInfo() {

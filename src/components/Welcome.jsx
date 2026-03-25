@@ -1,4 +1,25 @@
+import { useState, useEffect } from 'react';
+
+const GALLERY_API = 'https://mass-backend.onrender.com/api/v1/gallery/all';
+
 function Welcome() {
+    const [churchImage, setChurchImage] = useState(null);
+
+    useEffect(() => {
+        fetch(GALLERY_API)
+            .then((res) => res.json())
+            .then((data) => {
+                const validImages = data.data.filter((img) => {
+                    const url = img.image_url.toLowerCase();
+                    return !url.endsWith('.heic') && !url.endsWith('.heif');
+                });
+                if (validImages.length > 0) {
+                    setChurchImage(validImages[0]);
+                }
+            })
+            .catch(() => { });
+    }, []);
+
     return (
         <section className="bg-amber-50 py-20 px-8">
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -9,7 +30,7 @@ function Welcome() {
                         ✝ About Our Parish
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold text-amber-900 mb-2">
-                        Welcome to Loyola Church
+                        Welcome to St. Ignatius of Loyola Church
                     </h2>
                     <div className="flex items-center gap-4 mb-6">
                         <div className="w-16 h-px bg-yellow-500" />
@@ -32,16 +53,33 @@ function Welcome() {
                     </button>
                 </div>
 
-                {/* Right - Image placeholder */}
+                {/* Right - Image */}
                 <div data-aos="fade-left" className="relative">
-                    <div className="w-full h-80 bg-yellow-100 border-4 border-yellow-300 flex items-center justify-center">
-                        <div className="text-center text-yellow-600">
-                            <div className="text-6xl mb-4">⛪</div>
-                            <p className="font-bold tracking-wide">Church Image</p>
-                            <p className="text-sm text-yellow-500">Coming Soon</p>
-                        </div>
-                    </div>
-                    <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-yellow-400 -z-10" />
+                    {churchImage ? (
+                        <>
+                            <img
+                                src={churchImage.image_url}
+                                alt={churchImage.title || 'Loyola Church'}
+                                className="w-full h-80 object-cover shadow-xl"
+                            />
+                            <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-yellow-400 -z-10" />
+                            <div className="absolute -top-4 -left-4 bg-yellow-500 text-gray-900 w-24 h-24 rounded-full flex flex-col items-center justify-center text-center font-bold text-xs p-2 shadow-lg">
+                                <span className="text-lg">✝</span>
+                                Loyola
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="w-full h-80 bg-yellow-100 border-4 border-yellow-300 flex items-center justify-center">
+                                <div className="text-center text-yellow-600">
+                                    <div className="text-6xl mb-4">⛪</div>
+                                    <p className="font-bold tracking-wide">Church Image</p>
+                                    <p className="text-sm text-yellow-500">Loading...</p>
+                                </div>
+                            </div>
+                            <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-yellow-400 -z-10" />
+                        </>
+                    )}
                 </div>
 
             </div>
