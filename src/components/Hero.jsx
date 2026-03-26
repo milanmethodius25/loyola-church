@@ -4,7 +4,7 @@ const GALLERY_API = 'https://mass-backend.onrender.com/api/v1/gallery/all';
 
 const defaultSlides = [
     {
-        title: 'Welcome to Loyola Church',
+        title: 'Welcome to St. Ignatius of Loyola Church',
         subtitle: 'A place of faith, hope and love',
     },
     {
@@ -79,7 +79,7 @@ function Hero() {
             {/* Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
                 <p className="text-yellow-400 text-sm tracking-widest uppercase mb-3 font-semibold">
-                    ✝ Loyola Church, Chromepet
+                    ✝ St. Ignatius of Loyola Church, Hanumantharayan kottai,Dindigul
                 </p>
                 <h1 className="text-white text-4xl md:text-6xl font-bold mb-4 transition-all duration-700">
                     {currentSlide.title}
